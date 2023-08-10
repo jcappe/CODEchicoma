@@ -1,0 +1,1 @@
+salloc -N 1 -A g23_alwhite_g -p gpu --qos=standard -t 480

@@ -1,0 +1,129 @@
+&task_list
+run_Time_Dependent=.true.
+test_Hamiltonian=.false.
+test_current=.false.
+run_Kubo_Greenwood=.false.
+calc_DOS=.false.
+run_Stopping_Power=.false.
+initial_orbital_free=.false.
+calculate_current=.false.
+wall_time_hours=8.0
+Cheby_Filter=.false.
+/
+
+&parallel_groups
+n_spin_groups=1
+n_k_groups=1
+n_band_groups=4
+/
+
+&system_parameters
+Temperature_eV= 20.0
+Number_of_elements = 2
+Number_of_KS_orbitals = 0
+Number_of_stoch_vect = 16
+Number_of_buffer_orbitals = 0
+Number_of_smoother_orbitals = 0
+Replica_x = 0 
+Replica_y = 0
+Replica_z = 0
+/
+
+&xc_functional
+exchange='GGA_X_PBE'
+correlation='GGA_C_PBE'
+/
+
+&Time_Dependent
+dt = 5
+nt = 80
+pulse_E0=0.00 0.00 0.0
+pulse_t_max_field=-1
+pulse_w_field=0.0
+pulse_tw= 0.07
+pulse_phase_field=0.0
+BOMD_or_RealTime = 'BOMD'
+Thermostat='IsoEnergy'
+SIL_rank=3
+err_allowed=1E-4
+xl_vmax=-1
+xl_kmax=6
+/
+
+&Kubo_Greenwood
+delta_eV=0.05
+omega_max_eV=60.0
+dw_eV=0.1
+/
+
+&Density_of_States
+delta_eV=2.0
+omega_max_eV=120.0
+dw_eV=0.1
+/
+
+&Stopping_Power
+remove_BO=.true.
+t0=3.38
+Projectile_PP_file='1H.1.hgh'
+Projectile_PP_type='HGH'
+Projectile_Projector_Application='None'
+Projectile_Mass_amu=1.007
+Projectile_R=0.00 0.5 0.5
+Projectile_V=3.0 0.0 0.0 &
+Constant_Velocity=.true.
+remove_t=.true.
+/
+
+&simulation_grid
+Nx= 32
+Ny= 32
+Nz= 32
+Length_Angst = 14 14 14
+Ecut=100 !eV
+internal_FFT=.false.
+pruned_WF_FFT=.false.
+Nx_fine= 32
+Ny_fine= 32
+Nz_fine= 32
+/
+
+&thomas_fermi
+gamma=1.0
+lambda=1.0
+energy_eps=1.0E-3
+max_iter=8000
+dynamic_kedp=.true.
+update_type=2
+/
+
+&element_list
+Number_of_atoms_of_element = 20 6
+PP_file = '1H.1.hgh' '6C.4.hgh'
+PP_type ='HGH' 'HGH'
+Projector_Application = 'None' 'Real_local'
+Mass_amu = 1.007 12.00 
+!thawed_positions=.true. .true.
+!thawed_velocities=.true. .true.
+frozen_positions=.false. .false.
+frozen_velocities=.false. .false.
+/
+
+&FFT
+FFT_algorithm = 'FFTW'
+/
+
+
+&numerics
+lobpcg_inner_steps=8
+lobpcg_soft_lock_thresh=1.0E-15
+pulay_max_iter=1000
+pulay_n=7
+pulay_k=50
+pulay_L2_eps=1.0E-3
+pulay_eig_eps=1.0E-2
+n_scf_delay=1
+extrapolation_M=-1
+/
+
+
